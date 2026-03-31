@@ -23,7 +23,7 @@
     }
 
     .typing {
-      font-size: clamp(2rem, 4vw, 6rem);
+      font-size: clamp(1.5rem, 4vw, 6rem);
       letter-spacing: 0.08em;
       white-space: nowrap;
     }
@@ -42,6 +42,9 @@
   </style>
 </head>
 <body>
+  <header>
+    <h1>24h:ours</h1>
+  </header>
   <h1 class="typing" aria-label="24hours">
     <span id="typed-text"></span><span id="cursor1" class="cursor">|</span><br/>
     <span id="typed-text2"></span><span id="cursor2" class="cursor" style="display: none;">|</span><br/>
@@ -62,7 +65,7 @@
     const typedText3 = document.getElementById("typed-text3");
     const typedText4 = document.getElementById("typed-text4");
     const typedText5 = document.getElementById("typed-text5");
-    const time = 100;
+    const time = 130;
   
     let index = 0;
     let index2 = 0;
