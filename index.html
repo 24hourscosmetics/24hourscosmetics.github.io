@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>24hours Typing Effect</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #6D9BCC;
+      color: #e2e8f0;
+      font-family: "SF Mono", "Consolas", "Menlo", monospace;
+    }
+
+    .typing {
+      font-size: clamp(2rem, 8vw, 6rem);
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .cursor {
+      display: inline-block;
+      margin-left: 0.1em;
+      animation: blink 0.8s steps(1) infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 class="typing" aria-label="24hours">
+    <span id="typed-text"></span><span id="cursor1" class="cursor">|</span><br/>
+    <span id="typed-text2"></span><span id="cursor2" class="cursor" style="display: none;">|</span><br/>
+    <span id="typed-text3"></span><span id="cursor3" class="cursor" style="display: none;">|</span><br/>
+    <span id="typed-text4"></span><span id="cursor4" class="cursor" style="display: none;">|</span><br/><br/>
+    <span id="typed-text5"></span><span id="cursor5" class="cursor" style="display: none;">|</span>
+  </span>
+  </h1>
+
+  <script>
+    const text = "Be glowy";
+    const text2 = "effortless";
+    const text3 = "pretty";
+    const text4 = "yourself";
+    const text5 = "We are almost here";
+    const typedText = document.getElementById("typed-text");
+    const typedText2 = document.getElementById("typed-text2");
+    const typedText3 = document.getElementById("typed-text3");
+    const typedText4 = document.getElementById("typed-text4");
+    const typedText5 = document.getElementById("typed-text5");
+    const time = 100;
+  
+    let index = 0;
+    let index2 = 0;
+    let index3 = 0;
+    let index4 = 0;
+    let index5 = 0;
+
+    function type() {
+      if (index <= text.length) {
+        typedText.textContent = text.slice(0, index);
+        index += 1;
+        setTimeout(type, 160);
+        if(index === text.length) {
+          document.querySelector("#cursor1").style.display = "none";
+          document.querySelector("#cursor2").style.display = "inline-block";
+          type2();
+        }
+        return;
+      }
+      // setTimeout(() => {
+      //   index = 0;
+      //   type();
+      // }, 1200);
+    }
+
+    function type2() {
+      if (index2 <= text2.length) {
+        typedText2.textContent = text2.slice(0, index2);
+        index2 += 1;
+        setTimeout(type2, time);
+      }
+      if(index2 === text2.length) {
+          document.querySelector("#cursor2").style.display = "none";
+          document.querySelector("#cursor3").style.display = "inline-block";
+          type3();
+      }
+      return;
+    }
+
+    function type3() {
+      if (index3 <= text3.length) {
+        typedText3.textContent = text3.slice(0, index3);
+        index3 += 1;
+        setTimeout(type3, time);
+      }
+      if(index3 === text3.length) {
+          document.querySelector("#cursor3").style.display = "none";
+          document.querySelector("#cursor4").style.display = "inline-block";
+          type4();
+      }
+    }
+
+    function type4() {
+      if (index4 <= text4.length) {
+        typedText4.textContent = text4.slice(0, index4);
+        index4 += 1;
+        setTimeout(type4, time);
+      }
+      if(index4 === text4.length) {
+          document.querySelector("#cursor4").style.display = "none";
+          document.querySelector("#cursor5").style.display = "inline-block";
+          type5();
+      }
+    } 
+    // type5: 중간에 지웠다가 다시 쓰는 효과(타이핑 -> 삭제 -> 다시 타이핑)
+    let type5Phase = "typing"; // "typing" | "deleting" | "typing2"
+    const deleteStartAt = Math.max(3, Math.floor(text5.length / 2)); // 중간 지우기 시작 지점
+    let hasDeletedOnce = false;
+
+    function type5() {
+      if (type5Phase === "typing") {
+        if (index5 <= text5.length) {
+          typedText5.textContent = text5.slice(0, index5);
+          index5 += 1;
+
+          // 중간에서 한 번 지우기 시작
+          if (!hasDeletedOnce && index5 === deleteStartAt) {
+            hasDeletedOnce = true;
+            type5Phase = "deleting";
+          }
+
+          setTimeout(type5, time);
+        }
+        return;
+      }
+
+      if (type5Phase === "deleting") {
+        const deleteTime = Math.max(30, Math.floor(time * 0.6));
+
+        if (index5 > 0) {
+          index5 -= 1;
+          typedText5.textContent = text5.slice(0, index5);
+          setTimeout(type5, deleteTime);
+          return;
+        }
+
+        // 다 지운 뒤 다시 타이핑
+        type5Phase = "typing2";
+        setTimeout(type5, time);
+        return;
+      }
+
+      // type5Phase === "typing2"
+      if (index5 <= text5.length) {
+        typedText5.textContent = text5.slice(0, index5);
+        index5 += 1;
+        setTimeout(type5, time);
+      }
+    }
+
+    type();
+  </script>
+</body>
+</html>
