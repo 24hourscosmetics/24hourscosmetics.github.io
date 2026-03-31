@@ -15,11 +15,27 @@
     body {
       margin: 0;
       min-height: 100vh;
-      display: grid;
-      place-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       background: #6D9BCC;
       color: #e2e8f0;
       font-family: "MuseoModerno", "Consolas", "Menlo", monospace;
+    }
+
+    header {
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    #hours-emblem {
+      max-width: min(260px, 60vw);
+      height: auto; /* 비율 유지 */
+      display: block;
     }
 
     .typing {
@@ -39,17 +55,23 @@
         opacity: 0;
       }
     }
+    h1 {
+      font-size: clamp(3rem, 4vw, 6rem);
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>24h:ours</h1>
+    <img src="assets/images/emblem_B_SB.png" alt="24hours" id="hours-emblem">
   </header>
   <h1 class="typing" aria-label="24hours">
     <span id="typed-text"></span><span id="cursor1" class="cursor">|</span><br/>
     <span id="typed-text2"></span><span id="cursor2" class="cursor" style="display: none;">|</span><br/>
     <span id="typed-text3"></span><span id="cursor3" class="cursor" style="display: none;">|</span><br/>
-    <span id="typed-text4"></span><span id="cursor4" class="cursor" style="display: none;">|</span><br/><br/>
+    <span id="typed-text4"></span><span id="cursor4" class="cursor" style="display: none;">|</span><br/>
+    <span id="typed-text6"></span><span id="cursor6" class="cursor" style="display: none;">|</span><br/><br/>
     <span id="typed-text5"></span><span id="cursor5" class="cursor" style="display: none;">|</span>
   </span>
   </h1>
@@ -59,12 +81,14 @@
     const text2 = "effortless";
     const text3 = "pretty";
     const text4 = "yourself";
-    const text5 = "We are almost here";
+    const text5 = "We are almost here.";
+    const text6 = "24h:ours.";
     const typedText = document.getElementById("typed-text");
     const typedText2 = document.getElementById("typed-text2");
     const typedText3 = document.getElementById("typed-text3");
     const typedText4 = document.getElementById("typed-text4");
     const typedText5 = document.getElementById("typed-text5");
+    const typedText6 = document.getElementById("typed-text6");
     const time = 130;
   
     let index = 0;
@@ -72,6 +96,7 @@
     let index3 = 0;
     let index4 = 0;
     let index5 = 0;
+    let index6 = 0;
 
     function type() {
       if (index <= text.length) {
@@ -118,18 +143,32 @@
       }
     }
 
-    function type4() {
-      if (index4 <= text4.length) {
-        typedText4.textContent = text4.slice(0, index4);
-        index4 += 1;
-        setTimeout(type4, time);
+      function type4() {
+        if (index4 <= text4.length) {
+          typedText4.textContent = text4.slice(0, index4);
+          index4 += 1;
+          setTimeout(type4, time);
+        }
+        if(index4 === text4.length) {
+            document.querySelector("#cursor4").style.display = "none";
+            document.querySelector("#cursor6").style.display = "inline-block";
+            setTimeout(() => {
+              type6();
+            }, time);
+        }
+      } 
+    function type6() {
+      if (index6 <= text6.length) {
+        typedText6.textContent = text6.slice(0, index6);
+        index6 += 1;
+        setTimeout(type6, time);
       }
-      if(index4 === text4.length) {
-          document.querySelector("#cursor4").style.display = "none";
+      if(index6 === text6.length) {
+          document.querySelector("#cursor6").style.display = "none";
           document.querySelector("#cursor5").style.display = "inline-block";
           type5();
       }
-    } 
+    }
     // type5: 중간에 지웠다가 다시 쓰는 효과(타이핑 -> 삭제 -> 다시 타이핑)
     let type5Phase = "typing"; // "typing" | "deleting" | "typing2"
     const deleteStartAt = Math.max(3, Math.floor(text5.length / 2)); // 중간 지우기 시작 지점
