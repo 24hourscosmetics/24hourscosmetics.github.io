@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>24hours Typing Effect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=MuseoModerno&display=swap" rel="stylesheet" />
   <style>
     * {
       box-sizing: border-box;
@@ -16,11 +19,11 @@
       place-items: center;
       background: #6D9BCC;
       color: #e2e8f0;
-      font-family: "SF Mono", "Consolas", "Menlo", monospace;
+      font-family: "MuseoModerno", "Consolas", "Menlo", monospace;
     }
 
     .typing {
-      font-size: clamp(2rem, 8vw, 6rem);
+      font-size: clamp(2rem, 4vw, 6rem);
       letter-spacing: 0.08em;
       white-space: nowrap;
     }
@@ -167,6 +170,9 @@
         typedText5.textContent = text5.slice(0, index5);
         index5 += 1;
         setTimeout(type5, time);
+      }
+      if(index5 === text5.length) {
+          document.querySelector("#cursor5").style.display = "none";
       }
     }
 
