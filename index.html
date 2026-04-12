@@ -71,7 +71,7 @@
 
     /* text5(text5 line) / text6(text6 line)만 살짝 강조 */
     #typed-text5 {
-      font-size: 1.5em;
+      font-size: 2em;
     }
 
     #cursor5,
@@ -101,17 +101,17 @@
   <div class="typing" aria-label="24hours">
     <div id="top-row" class="top-row">
       <p>
-        <span id="typed-text0"></span><span id="cursor0" class="cursor">|</span>
+        <!-- <span id="typed-text0"></span><span id="cursor0" class="cursor">|</span> -->
       </p>
     </div>
     <div class="bottom-col">
-      <span id="typed-text"></span><span id="cursor1" class="cursor" style="display: none;">|</span><br/>
+      <!-- <span id="typed-text"></span><span id="cursor1" class="cursor" style="display: none;">|</span><br/>
       <span id="typed-text2"></span><span id="cursor2" class="cursor" style="display: none;">|</span><br/>
       <span id="typed-text3"></span><span id="cursor3" class="cursor" style="display: none;">|</span><br/>
-      <span id="typed-text4"></span><span id="cursor4" class="cursor" style="display: none;">|</span><br/>
-      <span id="typed-text6"></span><span id="cursor6" class="cursor" style="display: none;">|</span><br/><br/>
+      <span id="typed-text4"></span><span id="cursor4" class="cursor" style="display: none;">|</span><br/> -->
+      <span id="typed-text6"></span><span id="cursor5" class="cursor" style="display: none;">|</span><br/><br/>
     </div>
-    <div class="logo">
+    <div class="logo" style="padding-left: 10px;;">
       <img src="assets/images/Wordmark_Horizontal_W.png" id="hours-emblem" alt="24hours" class="hours-emblem" style="display: none;">
       <!-- <span id="typed-text6"></span><span id="cursor6" class="cursor" style="display: none;">|</span><br/><br/> -->
     </div>
@@ -123,7 +123,7 @@
     <span id="typed-text5"></span><span id="cursor5" class="cursor" style="display: none;">|</span> -->
   </div>
   <p>
-    <span id="typed-text5"></span><span id="cursor5" class="cursor" style="display: none;">|</span>
+    <span id="typed-text5"></span><span id="cursor5" class="cursor">|</span>
   </p>
 
   <script>
@@ -284,7 +284,7 @@
       }
     }
 
-    type0();
+    type5();
   </script>
 </body>
 </html>
