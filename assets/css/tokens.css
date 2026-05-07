@@ -1,0 +1,18 @@
+/* 디자인 토큰 — 여러 페이지에서 공통으로 쓸 변수 */
+
+:root {
+  --gap: 1rem;
+
+  /* 고정 상단 레이아웃 */
+  --ticker-height: 2.625rem;
+  --header-height: 4.75rem;
+  --sticky-top-offset: calc(var(--ticker-height) + var(--header-height));
+
+  --list-line: rgba(255, 255, 255, 0.26);
+  --cell-bg: rgba(255, 255, 255, 0.05);
+  --cell-bg-hover: rgba(255, 255, 255, 0.1);
+
+  --surface-glass-strong: rgba(12, 40, 70, 0.85);
+  --surface-glass-soft: rgba(12, 40, 70, 0.75);
+  --border-subtle: rgba(255, 255, 255, 0.12);
+}

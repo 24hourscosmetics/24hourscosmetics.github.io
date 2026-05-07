@@ -1,0 +1,16 @@
+/* 전역 기본 스타일 */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--sticky-top-offset);
+  background: linear-gradient(180deg, #6d9bcc 0%, #194369 100%);
+  color: #f1f5f9;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+}

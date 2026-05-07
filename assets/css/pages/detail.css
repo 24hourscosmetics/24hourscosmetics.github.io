@@ -1,0 +1,200 @@
+/* 상세 페이지 전용 */
+
+.detail-hero {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(25, 67, 105, 0.35) 0%,
+    rgba(25, 67, 105, 0.5) 100%
+  );
+}
+
+.detail-hero__img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.detail-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-block: clamp(1rem, 3vw, 2rem);
+  padding-inline: 0;
+}
+
+.detail-title {
+  margin: 0 0 1.25rem;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+  font-size: clamp(1.1rem, 2.8vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* 상세 그리드: flex + wrap — 테두리 줄로만 구분 */
+.detail-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--list-line);
+  border-left: 1px solid var(--list-line);
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 1 1 100%;
+  width: 100%;
+  margin: 0;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  min-height: 0;
+  padding: clamp(0.75rem, 2.5vw, 1.25rem);
+  border-radius: 0;
+  background: var(--cell-bg) center / cover no-repeat;
+  background-blend-mode: overlay;
+  border: none;
+  border-right: 1px solid var(--list-line);
+  border-bottom: 1px solid var(--list-line);
+  backdrop-filter: blur(4px);
+  transition: background 0.18s ease;
+  position: relative;
+}
+
+.detail-item__link {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.detail-item:hover {
+  background-color: var(--cell-bg-hover);
+}
+
+.detail-item__label {
+  margin: 0 0 0.35rem;
+  font-size: clamp(0.6rem, 1.4vw, 0.85rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: white;
+  opacity: 1;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 2;
+}
+
+.detail-item__title {
+  margin: 0;
+  font-size: clamp(0.95rem, 2.8vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 2;
+}
+
+/* 배경 이미지 */
+.detail-item:nth-child(1) {
+  background-color: #fff;
+  background-image: none;
+}
+
+.detail-item:nth-child(2) {
+  background-image: url('../../images/emblem_B_PB.png');
+}
+
+.detail-item:nth-child(3) {
+  background-image: url('../../images/emblem_A_OB.png');
+}
+
+.detail-item:nth-child(4) {
+  background-color: #fff;
+  background-image: none;
+}
+
+.detail-item:nth-child(5) {
+  background-color: #fff;
+  background-image: none;
+}
+
+.detail-item:nth-child(6) {
+  background-image: url('../../images/emblem_B_SB.png');
+}
+
+.detail-page--easea .detail-item:nth-child(2) {
+  background-image: url('https://ecimg.cafe24img.com/pg2449b90972375099/easea25/web/product/extra/big/20260505/dac5d27d4328ce333f6f55e2e0947210.png');
+}
+
+.detail-page--easea .detail-item:nth-child(3) {
+  background-image: url('https://ecimg.cafe24img.com/pg2449b90972375099/easea25/web/product/extra/big/20260505/47f1bbf0135b305a81ff9e8992726b7b.png');
+}
+
+.detail-page--easea .detail-item:nth-child(6) {
+  background-image: url('https://ecimg.cafe24img.com/pg2449b90972375099/easea25/web/product/extra/big/20260505/c4ce0d2299da02bb5f718d9087a793a2.png');
+}
+
+/* 하이라이트 아이템 (클릭된 상품) */
+.detail-item--highlight {
+  opacity: 1;
+  cursor: default;
+  justify-content: flex-start;
+}
+
+.detail-item--highlight:hover {
+  background-color: #fff;
+}
+
+.detail-item--highlight .detail-item__label,
+.detail-item--highlight .detail-item__title {
+  color: #14324f;
+  text-shadow: none;
+}
+
+.detail-item__desc {
+  margin: 0.75rem 0 0 0;
+  font-size: clamp(0.8rem, 1.8vw, 1.05rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 2;
+}
+
+.detail-item--highlight .detail-item__desc {
+  color: #26384a;
+  text-shadow: none;
+}
+
+.detail-item__header {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+/* 태블릿 이상: 2칸 그리드 */
+@media (min-width: 769px) {
+  .detail-item {
+    flex: 1 1 calc(100% / 2);
+    width: calc(100% / 2);
+    max-width: calc(100% / 2);
+  }
+}
