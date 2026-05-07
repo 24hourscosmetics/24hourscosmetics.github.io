@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=MuseoModerno&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
   <style>
     * {
       box-sizing: border-box;
@@ -24,7 +26,7 @@
       font-family: "MuseoModerno", "Consolas", "Menlo", monospace;
     }
 
-    header {
+    .landing-logo {
       margin-bottom: 1.5rem;
       display: flex;
       justify-content: center;
@@ -75,9 +77,44 @@
   </style>
 </head>
 <body>
-  <header>
-    <img src="assets/images/emblem_B_SB.png" alt="24hours" id="hours-emblem">
+  <div class="ticker" aria-label="알림: WE ARE ALMOST HERE." role="region">
+    <div class="ticker__track">
+      <span class="ticker__segment">WE ARE ALMOST HERE. WE ARE ALMOST HERE. WE ARE ALMOST HERE. WE ARE ALMOST HERE.</span><span class="ticker__segment" aria-hidden="true">WE ARE ALMOST HERE. WE ARE ALMOST HERE. WE ARE ALMOST HERE. WE ARE ALMOST HERE.</span>
+    </div>
+  </div>
+
+  <header class="site-header page-header">
+    <nav class="site-nav" aria-label="Primary navigation">
+      <div class="site-nav__menu">
+        <a class="site-nav__link" href="index.html">HOME</a>
+        <div class="site-nav__item site-nav__item--has-menu">
+          <a class="site-nav__link" href="shop.html" aria-haspopup="true">SHOP</a>
+          <div class="site-nav__dropdown" aria-label="SHOP submenu">
+            <a href="shop-by-hours.html">by Hours</a>
+            <a href="shop-skincare.html">Skincare</a>
+            <a href="shop-make-up.html">Make-up</a>
+          </div>
+        </div>
+        <div class="site-nav__item site-nav__item--has-menu">
+          <a class="site-nav__link" href="about-24hours.html" aria-haspopup="true">About 24H:Ours</a>
+          <div class="site-nav__dropdown" aria-label="About 24H:Ours submenu">
+            <a href="our-principle.html">Our Principle</a>
+            <a href="the-hours-blog.html">The Hours Blog</a>
+          </div>
+        </div>
+        <a class="site-nav__link" href="your-current-hour.html">Your Current Hour</a>
+      </div>
+      <div class="site-nav__language" aria-label="Language selection">
+        <button class="site-nav__lang" type="button" lang="ko" aria-pressed="true">KO</button>
+        <button class="site-nav__lang" type="button" lang="en">EN</button>
+        <button class="site-nav__lang" type="button" lang="ja">JP</button>
+      </div>
+    </nav>
   </header>
+
+  <div class="landing-logo">
+    <img src="assets/images/emblem_B_SB.png" alt="24hours" id="hours-emblem">
+  </div>
   <h1 class="typing" aria-label="24hours">
     <span id="typed-text"></span><span id="cursor1" class="cursor">|</span><br/>
     <span id="typed-text2"></span><span id="cursor2" class="cursor" style="display: none;">|</span><br/>

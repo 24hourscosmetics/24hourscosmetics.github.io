@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>24hours — 리스트</title>
+  <title>24hours — Your Current Hour</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/tokens.css" />
   <link rel="stylesheet" href="assets/css/base.css" />
   <link rel="stylesheet" href="assets/css/components.css" />
-  <link rel="stylesheet" href="assets/css/pages/main.css" />
+  <link rel="stylesheet" href="assets/css/pages/content.css" />
 </head>
 <body>
   <div class="ticker" aria-label="알림: WE ARE ALMOST HERE." role="region">
@@ -48,57 +48,12 @@
     </nav>
   </header>
 
-  <main class="page-main">
-    <section class="main-hero" aria-label="Brand visual">
-      <img
-        class="main-hero__img"
-        src="assets/images/main.png"
-        alt="24hours"
-        decoding="async"
-      />
+  <main class="content-page">
+    <section class="content-panel">
+      <p class="content-panel__eyebrow">24H:Ours</p>
+      <h1 class="content-panel__title">Your Current Hour</h1>
+      <p class="content-panel__copy">A future home for discovering what your skin wants right now.</p>
     </section>
-    <div id="main-list" class="main-list">
-    <h1 class="page-title">Collection</h1>
-    <ul class="list">
-      <li class="list-item">
-        <a href="detail-01.html" class="list-item__link">
-          <!-- <span class="list-item__label">ITEM 01</span> -->
-          <p class="list-item__title">Day Essence</p>
-        </a>
-      </li>
-      <li class="list-item">
-        <a href="detail-01.html" class="list-item__link">
-          <!-- <span class="list-item__label">ITEM 02</span> -->
-          <p class="list-item__title">Night Repair</p>
-        </a>
-      </li>
-      <li class="list-item">
-        <a href="detail-01.html" class="list-item__link">
-          <!-- <span class="list-item__label">ITEM 03</span> -->
-          <p class="list-item__title">Glow Serum</p>
-        </a>
-      </li>
-      <li class="list-item">
-        <a href="detail-01.html" class="list-item__link">
-          <!-- <span class="list-item__label">ITEM 04</span> -->
-          <p class="list-item__title">Hydrating Mist</p>
-        </a>
-      </li>
-      <li class="list-item">
-        <a href="detail-01.html" class="list-item__link">
-          <!-- <span class="list-item__label">ITEM 05</span> -->
-          <p class="list-item__title">Barrier Cream</p>
-        </a>
-      </li>
-      <li class="list-item">
-        <a href="detail-01.html" class="list-item__link">
-          <!-- <span class="list-item__label">ITEM 06</span> -->
-          <p class="list-item__title">SPF Daily</p>
-        </a>
-      </li>
-    </ul>
-    </div>
   </main>
-  <script src="assets/js/main-page.js" defer></script>
 </body>
 </html>
