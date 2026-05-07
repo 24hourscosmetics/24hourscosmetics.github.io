@@ -10,7 +10,7 @@ body {
   display: flex;
   flex-direction: column;
   padding-top: var(--sticky-top-offset);
-  background: linear-gradient(180deg, #6d9bcc 0%, #194369 100%);
-  color: #f1f5f9;
+  background: #ffffff;
+  color: #000000;
   font-family: "Space Grotesk", system-ui, sans-serif;
 }
