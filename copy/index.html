@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>24H:Ours Copy Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --ink: #111;
+      --paper: #fff;
+      --line: #111;
+      --soft: #f6f6f3;
+      --muted: rgba(17, 17, 17, 0.56);
+      --ticker-h: 38px;
+      --header-h: 92px;
+    }
+
+    body {
+      margin: 0;
+      padding-top: calc(var(--ticker-h) + var(--header-h));
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Space Grotesk", Arial, sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .ticker {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 50;
+      height: var(--ticker-h);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .ticker__track {
+      display: flex;
+      width: max-content;
+      animation: ticker 26s linear infinite;
+    }
+
+    .ticker__track span {
+      padding-right: 54px;
+      white-space: nowrap;
+    }
+
+    @keyframes ticker {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .header {
+      position: fixed;
+      top: var(--ticker-h);
+      left: 0;
+      right: 0;
+      z-index: 40;
+      height: var(--header-h);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: 28px;
+      padding: 18px 26px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .nav__item {
+      position: relative;
+      height: var(--header-h);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav__item:hover .mega,
+    .nav__item:focus-within .mega {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .brand {
+      width: clamp(136px, 17vw, 230px);
+      display: block;
+    }
+
+    .tools {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 18px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .tools button {
+      border: 0;
+      background: transparent;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .language {
+      display: flex;
+      gap: 7px;
+    }
+
+    .language a {
+      color: var(--muted);
+    }
+
+    .language a:first-child {
+      color: var(--ink);
+    }
+
+    .mega {
+      position: fixed;
+      top: calc(var(--ticker-h) + var(--header-h));
+      left: 0;
+      right: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .mega::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 100%;
+      height: 12px;
+    }
+
+    .mega__col {
+      min-height: 220px;
+      padding: 28px 34px;
+      border-right: 1px solid var(--line);
+    }
+
+    .mega__col h3 {
+      margin: 0 0 18px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .mega__col li + li {
+      margin-top: 13px;
+    }
+
+    .mega__col a {
+      font-size: clamp(20px, 2.2vw, 34px);
+      font-weight: 700;
+      line-height: 0.95;
+    }
+
+    .main {
+      min-height: 100vh;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.82fr);
+      min-height: calc(100svh - var(--ticker-h) - var(--header-h));
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero__image {
+      position: relative;
+      min-height: 540px;
+      border-right: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.16)),
+        url("../assets/images/main.png") center / cover no-repeat;
+    }
+
+    .hero__image::after {
+      content: "24H:Ours";
+      position: absolute;
+      left: 28px;
+      bottom: 24px;
+      color: #fff;
+      font-size: clamp(42px, 9vw, 128px);
+      font-weight: 700;
+      line-height: 0.86;
+      letter-spacing: 0;
+      text-shadow: 0 3px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero__panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 30px;
+      padding: clamp(24px, 4vw, 54px);
+    }
+
+    .notice {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .hero h1 {
+      max-width: 9ch;
+      margin: 0;
+      font-size: clamp(54px, 9vw, 132px);
+      line-height: 0.86;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      max-width: 420px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(16px, 1.4vw, 21px);
+      line-height: 1.55;
+    }
+
+    .hero__cta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .hero__cta a {
+      min-height: 86px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 16px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .marquee {
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background: var(--soft);
+    }
+
+    .marquee__track {
+      width: max-content;
+      display: flex;
+      animation: marquee 42s linear infinite;
+    }
+
+    .marquee__track span {
+      padding: 18px 38px 18px 0;
+      font-size: clamp(24px, 4vw, 58px);
+      font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    @keyframes marquee {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .line-list {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .line-row {
+      min-height: 230px;
+      display: grid;
+      grid-template-columns: minmax(230px, 0.42fr) minmax(0, 1fr) 80px;
+      align-items: stretch;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .line-row:last-child {
+      border-bottom: 0;
+    }
+
+    .line-row__name {
+      display: flex;
+      align-items: flex-end;
+      padding: 26px;
+      border-right: 1px solid var(--line);
+      font-size: clamp(38px, 7vw, 96px);
+      font-weight: 700;
+      line-height: 0.88;
+      text-transform: uppercase;
+    }
+
+    .line-row__copy {
+      display: flex;
+      align-items: center;
+      padding: 28px clamp(24px, 5vw, 72px);
+      font-size: clamp(17px, 2vw, 27px);
+      line-height: 1.48;
+    }
+
+    .line-row__arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-left: 1px solid var(--line);
+      font-size: 34px;
+      font-weight: 700;
+    }
+
+    .brand-block {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      min-height: 560px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand-block__copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 36px;
+      padding: clamp(24px, 4vw, 54px);
+      border-right: 1px solid var(--line);
+    }
+
+    .brand-block__copy h2 {
+      margin: 0;
+      max-width: 8ch;
+      font-size: clamp(48px, 8vw, 118px);
+      line-height: 0.88;
+      text-transform: uppercase;
+    }
+
+    .brand-block__copy p {
+      max-width: 490px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(16px, 1.6vw, 22px);
+      line-height: 1.58;
+    }
+
+    .brand-block__image {
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.18)),
+        url("https://ecimg.cafe24img.com/pg2449b90972375099/easea25/web/upload/NNEditor/20260423/16e87e5e14208e762c05a0cbbc9380df.png") center / cover no-repeat;
+    }
+
+    .footer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .footer__col {
+      min-height: 210px;
+      padding: 24px 26px;
+      border-right: 1px solid var(--line);
+    }
+
+    .footer h3 {
+      margin: 0 0 22px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .footer p,
+    .footer li {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .footer li + li {
+      margin-top: 6px;
+    }
+
+    .copyright {
+      grid-column: 1 / -1;
+      padding: 18px 26px;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      :root {
+        --header-h: 142px;
+      }
+
+      .header {
+        height: var(--header-h);
+        grid-template-columns: 1fr auto;
+        align-content: center;
+      }
+
+      .brand {
+        justify-self: end;
+      }
+
+      .tools {
+        grid-column: 1 / -1;
+        justify-content: space-between;
+      }
+
+      .nav {
+        overflow-x: auto;
+        gap: 18px;
+      }
+
+      .mega {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .mega__col {
+        min-height: 160px;
+      }
+
+      .hero,
+      .brand-block {
+        grid-template-columns: 1fr;
+      }
+
+      .hero__image,
+      .brand-block__copy {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .hero__image {
+        min-height: 55svh;
+      }
+
+      .hero__cta,
+      .footer {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .line-row {
+        grid-template-columns: 1fr 58px;
+      }
+
+      .line-row__name,
+      .line-row__copy {
+        grid-column: 1 / 2;
+        border-right: 0;
+      }
+
+      .line-row__name {
+        padding-bottom: 8px;
+      }
+
+      .line-row__copy {
+        padding-top: 8px;
+      }
+
+      .line-row__arrow {
+        grid-row: 1 / 3;
+        grid-column: 2 / 3;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .header {
+        padding-inline: 16px;
+      }
+
+      .nav {
+        grid-column: 1 / -1;
+      }
+
+      .brand {
+        width: 130px;
+      }
+
+      .mega {
+        grid-template-columns: 1fr;
+      }
+
+      .hero__cta,
+      .footer {
+        grid-template-columns: 1fr;
+      }
+
+      .hero__panel,
+      .brand-block__copy {
+        padding: 22px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ticker">
+    <div class="ticker__track">
+      <span>신규 가입시 즉시 사용 가능한 5천원 적립금</span>
+      <span>신규 가입시 즉시 사용 가능한 5천원 적립금</span>
+      <span>신규 가입시 즉시 사용 가능한 5천원 적립금</span>
+      <span>신규 가입시 즉시 사용 가능한 5천원 적립금</span>
+      <span>신규 가입시 즉시 사용 가능한 5천원 적립금</span>
+      <span>신규 가입시 즉시 사용 가능한 5천원 적립금</span>
+      <span>신규 가입시 즉시 사용 가능한 5천원 적립금</span>
+      <span>신규 가입시 즉시 사용 가능한 5천원 적립금</span>
+    </div>
+  </div>
+
+  <header class="header">
+    <nav class="nav" aria-label="Primary">
+      <div class="nav__item"><a href="#">Promotion</a></div>
+      <div class="nav__item"><a href="#">MVG</a></div>
+      <div class="nav__item"><a href="#">VIP</a></div>
+      <div class="nav__item">
+        <a href="#">Shop</a>
+        <div class="mega">
+          <section class="mega__col">
+            <h3>Skincare</h3>
+            <ul>
+              <li><a href="#">All</a></li>
+              <li><a href="#">By Hours</a></li>
+              <li><a href="#">Morning</a></li>
+              <li><a href="#">Night</a></li>
+            </ul>
+          </section>
+          <section class="mega__col">
+            <h3>Make-up</h3>
+            <ul>
+              <li><a href="#">Base</a></li>
+              <li><a href="#">Glow</a></li>
+              <li><a href="#">Touch-up</a></li>
+            </ul>
+          </section>
+          <section class="mega__col">
+            <h3>Set</h3>
+            <ul>
+              <li><a href="#">Routine</a></li>
+              <li><a href="#">Current Hour</a></li>
+            </ul>
+          </section>
+          <section class="mega__col">
+            <h3>Tools</h3>
+            <ul>
+              <li><a href="#">Applicator</a></li>
+              <li><a href="#">PKWD</a></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+      <div class="nav__item"><a href="#">Tutorial</a></div>
+      <div class="nav__item">
+        <a href="#">Our Story</a>
+        <div class="mega">
+          <section class="mega__col">
+            <h3>Project</h3>
+            <ul>
+              <li><a href="#">Principle</a></li>
+              <li><a href="#">Campaign</a></li>
+            </ul>
+          </section>
+          <section class="mega__col">
+            <h3>Store</h3>
+            <ul>
+              <li><a href="#">Offline</a></li>
+              <li><a href="#">Press</a></li>
+            </ul>
+          </section>
+          <section class="mega__col">
+            <h3>Brand</h3>
+            <ul>
+              <li><a href="#">24H:Ours</a></li>
+              <li><a href="#">The Hours Blog</a></li>
+            </ul>
+          </section>
+          <section class="mega__col">
+            <h3>Contact</h3>
+            <ul>
+              <li><a href="#">Customer Care</a></li>
+              <li><a href="#">Partnership</a></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </nav>
+
+    <a href="../index.html" aria-label="24H:Ours Home">
+      <img class="brand" src="../assets/images/Wordmark_Horizontal_B.png" alt="24H:Ours" />
+    </a>
+
+    <div class="tools">
+      <button type="button">search 검색</button>
+      <a href="#">로그인</a>
+      <div class="language" aria-label="Language selection">
+        <a href="#">KR</a>
+        <a href="#">EN</a>
+        <a href="#">JP</a>
+        <a href="#">CN</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="hero">
+      <div class="hero__image" aria-hidden="true"></div>
+      <div class="hero__panel">
+        <span class="notice">첫 구매 즉시 사용 5,000원 적립금을 드립니다.</span>
+        <div>
+          <h1>Current Hour Set</h1>
+          <p>시기에 따라 달라지는 피부 고민. 24H:Ours가 지금 이 시간의 피부 상태를 분석하여 가장 효과적인 루틴을 제안합니다.</p>
+        </div>
+        <div class="hero__cta">
+          <a href="#">프로모션 보기 <span>→</span></a>
+          <a href="#">루틴 찾기 <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="marquee" aria-label="Brand statement">
+      <div class="marquee__track">
+        <span>Natural rhythm with your current hour.</span>
+        <span>Let us care for your lifestyle and good skin.</span>
+        <span>Natural rhythm with your current hour.</span>
+        <span>Let us care for your lifestyle and good skin.</span>
+      </div>
+    </section>
+
+    <section class="line-list">
+      <a class="line-row" href="#">
+        <div class="line-row__name">Morning</div>
+        <div class="line-row__copy">아침의 건조함과 칙칙함을 깨우는 베이직 라인입니다. 피부 장벽을 정돈하고 수분 밸런스를 맞춰 하루의 첫 컨디션을 만들어줍니다.</div>
+        <div class="line-row__arrow">→</div>
+      </a>
+      <a class="line-row" href="#">
+        <div class="line-row__name">Daytime</div>
+        <div class="line-row__copy">오후에도 무너지지 않는 피부 표현을 위한 솔루션입니다. 스킨케어와 메이크업 사이의 밀착감과 편안함을 설계합니다.</div>
+        <div class="line-row__arrow">→</div>
+      </a>
+      <a class="line-row" href="#">
+        <div class="line-row__name">Night</div>
+        <div class="line-row__copy">하루 동안 흔들린 피부 리듬을 차분히 리셋합니다. 편안한 회복감과 다음 아침의 생기를 준비하는 나이트 루틴입니다.</div>
+        <div class="line-row__arrow">→</div>
+      </a>
+    </section>
+
+    <section class="brand-block">
+      <div class="brand-block__copy">
+        <h2>Our Story</h2>
+        <p>우리는 제품을 카테고리보다 시간으로 먼저 생각합니다. 지금의 피부, 지금의 기분, 지금 필요한 표현을 기준으로 스킨케어와 메이크업을 연결합니다.</p>
+      </div>
+      <div class="brand-block__image" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <section class="footer__col">
+      <h3>Customer Care</h3>
+      <p>Mon - Fri / 10:00 am - 17:00 pm</p>
+      <p>채널톡 상담 문의</p>
+      <p>토, 일요일 및 공휴일 휴무</p>
+    </section>
+    <section class="footer__col">
+      <h3>Help</h3>
+      <ul>
+        <li>자주 묻는 질문</li>
+        <li>주문 조회</li>
+        <li>교환 및 반품</li>
+        <li>멤버십 혜택</li>
+      </ul>
+    </section>
+    <section class="footer__col">
+      <h3>Info</h3>
+      <ul>
+        <li>협업 문의</li>
+        <li>기업 구매 문의</li>
+        <li>이벤트</li>
+      </ul>
+    </section>
+    <section class="footer__col">
+      <h3>Social</h3>
+      <ul>
+        <li>Review</li>
+        <li>Instagram</li>
+        <li>Blog</li>
+      </ul>
+    </section>
+    <div class="copyright">© 24H:Ours Copy Study</div>
+  </footer>
+</body>
+</html>
